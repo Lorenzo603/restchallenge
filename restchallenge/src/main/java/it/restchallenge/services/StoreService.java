@@ -1,5 +1,7 @@
 package it.restchallenge.services;
 
+import it.restchallenge.data.StoreData;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,6 @@ public interface StoreService {
 
     String getAllStoresRaw();
 
-    List<String> getAllStoresList();
+    List<StoreData> getAllStoresList();
 
 }
