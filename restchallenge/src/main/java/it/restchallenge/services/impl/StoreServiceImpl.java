@@ -48,6 +48,7 @@ public class StoreServiceImpl implements StoreService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        stores.remove(0); // remove header line
         return stores;
     }
 
