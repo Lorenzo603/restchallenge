@@ -1,5 +1,6 @@
 package it.restchallenge.services.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -10,8 +11,11 @@ public class StoreServiceImplIntegrationTest {
     private StoreServiceImpl storeServiceImpl = new StoreServiceImpl();
 
     @Test
-    private void shouldGetAllStores() {
-
+    public void shouldGetAllStores() {
+        String storesRaw = storeServiceImpl.getAllStoresRaw();
+        Assert.assertNotNull(storesRaw);
+        Assert.assertFalse(storesRaw.isEmpty());
+        System.out.println(storesRaw);
     }
 
 }

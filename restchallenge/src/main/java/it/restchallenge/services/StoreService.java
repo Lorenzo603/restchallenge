@@ -7,6 +7,8 @@ import java.util.List;
  */
 public interface StoreService {
 
-    List<List<String>> getAllStores();
+    String getAllStoresRaw();
+
+    List<String> getAllStoresList();
 
 }
