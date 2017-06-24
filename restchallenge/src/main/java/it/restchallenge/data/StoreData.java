@@ -62,7 +62,7 @@ public class StoreData {
         Calendar dayOne = Calendar.getInstance();
         dayOne.setTime(DateTime.now().toDate());
         Calendar dayTwo = Calendar.getInstance();
-        dayOne.setTime(DateTime.parse(this.getOpenedDate(), DateTimeFormat.forPattern("dd/MM/yyyy")).toDate());
+        dayTwo.setTime(DateTime.parse(this.getOpenedDate(), DateTimeFormat.forPattern("dd/MM/yyyy")).toDate());
 
         if (dayOne.get(Calendar.YEAR) == dayTwo.get(Calendar.YEAR)) {
             return Math.abs(dayOne.get(Calendar.DAY_OF_YEAR) - dayTwo.get(Calendar.DAY_OF_YEAR));
@@ -83,7 +83,7 @@ public class StoreData {
                 extraDays += dayOne.getActualMaximum(Calendar.DAY_OF_YEAR);
             }
 
-            return extraDays - dayTwo.get(Calendar.DAY_OF_YEAR) + dayOneOriginalYearDays ;
+            return extraDays - dayTwo.get(Calendar.DAY_OF_YEAR) + dayOneOriginalYearDays;
         }
     }
 
