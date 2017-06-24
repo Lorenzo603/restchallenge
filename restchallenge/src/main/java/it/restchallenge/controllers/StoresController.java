@@ -1,5 +1,6 @@
 package it.restchallenge.controllers;
 
+import it.restchallenge.data.CreateStoreForm;
 import it.restchallenge.data.StoreData;
 import it.restchallenge.facades.StoreFacade;
 import it.restchallenge.options.StoreSortBy;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,7 +31,14 @@ public class StoresController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public List<StoreData> getStoresSorted(@RequestParam String order) {
-        return storeFacade.getAllStoresSorted(StoreSortBy.valueOf(order));
+        return storeFacade.getAllStoresSorted(StoreSortBy.valueOf(order.toUpperCase()));
+    }
+
+    @RequestMapping(value = "/stores", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void createStore(@Valid CreateStoreForm createStoreForm) {
+        return;
+        // return storeFacade.createStore(createStoreForm);
     }
 
 }
