@@ -24,7 +24,7 @@ public class StoreFacadeImpl implements StoreFacade {
     private StoreService storeService;
 
     public StoreData getStoreById(String id) {
-        for (StoreData store : storeService.getAllStoresList()) {
+        for (StoreData store : storeService.getAllStores()) {
             if (id.equals(store.getId())) {
                 return store;
             }
@@ -33,7 +33,7 @@ public class StoreFacadeImpl implements StoreFacade {
     }
 
     public List<StoreData> getAllStoresSorted(StoreSortBy sortBy) {
-        List<StoreData> stores = storeService.getAllStoresList();
+        List<StoreData> stores = storeService.getAllStores();
         switch (sortBy) {
             case CITY: Collections.sort(stores, Comparator.comparing(o -> o.getCity().toLowerCase()));
             break;

@@ -20,12 +20,5 @@ public class StoreServiceImplIntegrationTest {
         Assert.assertFalse(storesRaw.isEmpty());
     }
 
-    @Test
-    public void shouldGetAllStores() {
-        List<StoreData> result = storeServiceImpl.getAllStoresList();
-        Assert.assertNotNull(result);
-        Assert.assertFalse(result.isEmpty());
-
-    }
 
 }

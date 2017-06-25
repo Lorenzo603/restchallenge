@@ -2,8 +2,10 @@ package it.restchallenge.services.impl;
 
 import com.opencsv.CSVReader;
 import it.restchallenge.data.StoreData;
+import it.restchallenge.services.StoreConverter;
 import it.restchallenge.services.StoreService;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,6 +22,9 @@ public class StoreServiceImpl implements StoreService {
 
     private static final String STORES_URL = "https://raw.githubusercontent.com/pearsonpmcuk/codingchallenge/master/stores.csv";
 
+    @Autowired
+    private StoreConverter storeConverter;
+
     public String getAllStoresRaw() {
         try {
             return IOUtils.toString(new URL(STORES_URL), "UTF-8");
@@ -30,26 +35,8 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<StoreData> getAllStoresList() {
-        String storesRaw = getAllStoresRaw();
-        CSVReader csvReader = new CSVReader(new StringReader(storesRaw));
-        String [] nextLine;
-        List<StoreData> stores = new ArrayList<>();
-        try {
-            while ((nextLine = csvReader.readNext()) != null) {
-                StoreData store = new StoreData();
-                store.setId(nextLine[0]);
-                store.setPostCode(nextLine[1]);
-                store.setCity(nextLine[2]);
-                store.setAddress(nextLine[3]);
-                store.setOpenedDate(nextLine[4]);
-                stores.add(store);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stores.remove(0); // remove header line
-        return stores;
+    public List<StoreData> getAllStores() {
+        return storeConverter.getAllStoresList(getAllStoresRaw());
     }
 
 }

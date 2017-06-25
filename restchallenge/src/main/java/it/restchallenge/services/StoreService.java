@@ -11,6 +11,6 @@ public interface StoreService {
 
     String getAllStoresRaw();
 
-    List<StoreData> getAllStoresList();
+    List<StoreData> getAllStores();
 
 }

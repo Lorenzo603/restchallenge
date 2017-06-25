@@ -31,7 +31,7 @@ public class StoreFacadeImplUnitTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        Mockito.when(storeService.getAllStoresList()).thenReturn(mockStores);
+        Mockito.when(storeService.getAllStores()).thenReturn(mockStores);
     }
 
     private StoreData createMockStore(String city, String openedDate) {
