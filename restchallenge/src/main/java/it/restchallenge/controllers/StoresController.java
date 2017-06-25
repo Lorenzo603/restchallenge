@@ -2,6 +2,7 @@ package it.restchallenge.controllers;
 
 import it.restchallenge.data.CreateStoreForm;
 import it.restchallenge.data.StoreData;
+import it.restchallenge.exceptions.ItemNotFoundException;
 import it.restchallenge.facades.StoreFacade;
 import it.restchallenge.options.StoreSortBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,11 @@ public class StoresController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public StoreData getStore(@PathVariable final String id) {
-        return storeFacade.getStoreById(id);
+        StoreData store = storeFacade.getStoreById(id);
+        if (store == null) {
+            throw new ItemNotFoundException();
+        }
+        return store;
     }
 
     @RequestMapping(value = "/stores", method = RequestMethod.GET)
