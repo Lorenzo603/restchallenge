@@ -25,7 +25,10 @@ public class StoreFacadeImplUnitTest {
     @Mock
     private StoreService storeService;
 
-    private List<StoreData> mockStores = Arrays.asList(createMockStore("b city", "20/06/1980"), createMockStore("A city", "20/06/2017"), createMockStore("Z city", "20/06/1960"));
+    private List<StoreData> mockStores = Arrays.asList(
+            createMockStore("001","b city", "20/06/1980"),
+            createMockStore("002","A city", "20/06/2017"),
+            createMockStore("003","Z city", "20/06/1960"));
 
 
     @Before
@@ -34,25 +37,22 @@ public class StoreFacadeImplUnitTest {
         Mockito.when(storeService.getAllStores()).thenReturn(mockStores);
     }
 
-    private StoreData createMockStore(String city, String openedDate) {
+    private StoreData createMockStore(String id, String city, String openedDate) {
         StoreData mock = new StoreData();
+        mock.setId(id);
         mock.setCity(city);
         mock.setOpenedDate(openedDate);
         return mock;
     }
     @Test
     public void shouldGetStoreById_ExistingStore() {
-         storeFacadeImpl.getStoreById("1525eec4-7bed-4597-bf5a-e06fcede5f4f");
+         StoreData result = storeFacadeImpl.getStoreById("003");
+         Assert.assertEquals("Z city", result.getCity());
     }
 
     @Test
     public void shouldGetStoreById_NoStoreExists() {
         Assert.assertNull(storeFacadeImpl.getStoreById("DoesNotExist"));
-    }
-
-    @Test
-    public void shouldGetStoreById_IgnoreHeaderLine() {
-        storeFacadeImpl.getStoreById("Store Id");
     }
 
     @Test

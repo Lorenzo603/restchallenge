@@ -21,7 +21,7 @@ public class StoreConverterImplUnitTest {
                 "f202ea77-6237-4caf-8d97-03c10d41a53c,AB42 1 ZP,Peterhead,\"Unit B1, Drummers Corner\",12/03/1994";
         List<StoreData> result = storeConverterImpl.getAllStoresList(raw);
         Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(3, result.size()); //ignores headline
     }
 
 }
